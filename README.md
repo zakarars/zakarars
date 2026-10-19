@@ -1,52 +1,54 @@
 ## Arsen Zakaryan
 
-Independent software consultant, Yerevan. I design the systems I ship, make the architectural
-decisions and keep them running in production. The implementation is written by AI coding agents
-I direct — Claude Code, Codex, Gemini. **C is the language I write unassisted.**
+AI automation engineer in Yerevan. I build AI agents, RAG pipelines and business systems for
+real companies, deploy them, and keep them running. I make the architecture and design decisions;
+most of the implementation is written by AI coding agents I direct (Claude Code, Codex, Gemini).
+**C is the language I write unassisted.**
 
-### What I've built
+### Public project
 
-**[carstar.am](https://carstar.am)** — vehicle-import pricing platform for the Armenian market,
-live and public. Turns a US auction price into a full landed cost: customs duty, VAT, three-leg
-shipping, live Central Bank exchange rates. The core of it is Armenia's vehicle import tax and
-customs regulations reverse-engineered into a working pricing engine. Admin dashboard for leads,
-pricing and inventory. *851 commits over ~17 months, in production.*
-`React/TypeScript` `FastAPI` `Supabase/PostgreSQL` `GitHub Actions` `Vercel` `Railway`
+**[jira-decisions-mcp](https://github.com/zakarars/jira-decisions-mcp)**: an MCP server that
+triages a Jira board with typed, calibrated decisions instead of prose. Python computes the facts
+(dates, staleness, blockers); a small local model (Qwen3) makes only the judgment calls (which
+team, how urgent). Every answer carries a confidence and a `needs_human_review` flag. It was
+evaluated once on a held-out test split: of the 20 tickets it flagged as misfiled, 15 really were.
+It runs fully locally, includes a read-only dashboard and has 291 tests. Built on synthetic data.
+`Python` `MCP` `Qwen3` `FastAPI` `pytest`
 
-**Oil station management platform** — inventory, clients, sales, role-based access control and
-audit logging behind an Armenian-language interface. Five services under Docker Compose:
-PostgreSQL 16, backend, frontend, Telegram bot, Caddy reverse proxy with TLS.
-*731 commits over 3 months, still active.*
-`Python` `aiogram` `Docker Compose` `Caddy` `PostgreSQL 16`
+### Production work (client repositories are private)
 
-**Regression and monitoring suite** — 61 Playwright/pytest end-to-end tests over business-critical
-flows on mobile and desktop, running every 6 hours in GitHub Actions, alerting to Telegram with
-screenshots on failure.
-`Playwright` `pytest` `GitHub Actions`
+**AI sales assistant for a real-estate developer**: a multilingual (Armenian / Russian / English)
+chatbot that answers availability and pricing questions across 397 units and passes qualified
+leads to the sales team. It's an n8n AI agent over Supabase pgvector with Gemini. Retrieval is
+mandatory, so it can't invent prices (12 of 12 test answers matched the catalogue). It has retries,
+an error workflow with throttled Telegram alerts, and a staged daily sync, so a failed data load
+never breaks the live bot.
+`n8n` `LangChain` `Gemini` `pgvector` `Telegram`
 
-**Telegram documentation assistant** (at CleanWhale) — Python and the Gemini API, answering staff
-questions from internal documentation. Routing-based retrieval: documentation segmented into topic
-files, the relevant one selected via the system prompt. I evaluated an embeddings/vector-search
-pipeline and turned it down — at that corpus size it would have added complexity without improving
-accuracy.
-`Python` `aiogram` `Google Gemini API`
+**Oil station management platform**: inventory, clients, sales, role-based access control and
+audit logging behind an Armenian-language interface. Five services under Docker Compose
+(PostgreSQL 16, backend, frontend, Telegram bot, Caddy with TLS). In daily use.
+`Python` `aiogram` `Docker Compose` `Caddy` `PostgreSQL`
 
-### Why most of this isn't here
+**[carstar.am](https://carstar.am)**: vehicle-import pricing platform for the Armenian market.
+It turns a US auction price into a full landed cost: customs duty, VAT, three shipping legs and
+live Central Bank exchange rates, with an admin dashboard for leads and inventory. 851 commits over
+about 17 months. The site is up; the pricing backend is currently offline.
+`React/TypeScript` `FastAPI` `Supabase` `GitHub Actions`
 
-The systems above are client work in private repositories, so what's public on this account is
-mostly older learning material. carstar.am is live if you want to see the real thing, and I'm happy
-to walk through architecture and decisions in a conversation.
+**Internal AI tools at CleanWhale (Prague)**: a Telegram documentation assistant (Python + Gemini
+API) for staff. I chose topic routing over vector search because, at that corpus size, vector
+search added complexity without improving accuracy. Privacy was built in: a data-sharing notice,
+scope limits, 6-month auto-deletion and a lawyer-drafted consent document. Also a 61-test
+Playwright/pytest monitoring suite running every 6 hours with Telegram alerts.
 
-### Also
+### Background
 
-~120-person service operation coordinated across Prague and Brno at CleanWhale, alongside building
-the internal tooling it ran on. I scope, price and write my own client proposals.
+Before engineering full-time I coordinated a ~120-person service operation across Prague and
+Brno, so I start from the business problem and agree on how "working" will be measured before
+building.
 
-Learning projects on this account, listed as such: a Vertex AI chatbot on Cloud Run, a RAG document
-assistant with ChromaDB, a voice assistant chaining Google Cloud STT → Gemini → TTS, and a retrieval
-bot in Go. Prototypes, not production systems.
-
-### Reach me
+### Contact
 
 [arsen.zakaryan@gmail.com](mailto:arsen.zakaryan@gmail.com) ·
 [LinkedIn](https://linkedin.com/in/arsen-zakaryan-964968133)
