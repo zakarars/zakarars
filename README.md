@@ -3,7 +3,7 @@
 AI automation engineer in Yerevan. I build AI agents, RAG pipelines and business systems for
 real companies, deploy them, and keep them running. I make the architecture and design decisions;
 most of the implementation is written by AI coding agents I direct (Claude Code, Codex, Gemini).
-**C is the language I write unassisted.**
+
 
 ### Public project
 
