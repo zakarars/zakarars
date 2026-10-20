@@ -17,10 +17,11 @@ It runs fully locally, includes a read-only dashboard and has 291 tests. Built o
 
 ### Case studies
 
-**[zakarars/case-studies](https://github.com/zakarars/case-studies)**: write-ups of four client
+**[zakarars/case-studies](https://github.com/zakarars/case-studies)**: write-ups of five client
 systems, each with the problem, architecture diagrams, the key decisions, measured results, real
 screenshots and a short animated walkthrough:
 [CBS sales assistant](https://github.com/zakarars/case-studies/tree/main/cbs-sales-assistant) ·
+[Auto-parts shop CRM](https://github.com/zakarars/case-studies/tree/main/autoparts-crm) ·
 [Har Oil station platform](https://github.com/zakarars/case-studies/tree/main/oil-station-platform) ·
 [carstar pricing engine](https://github.com/zakarars/case-studies/tree/main/carstar-pricing-engine) ·
 [CleanWhale QA monitor and assistant](https://github.com/zakarars/case-studies/tree/main/cleanwhale-internal-ai)
@@ -35,6 +36,13 @@ mandatory before any figure: in test rounds the agent looked the catalogue up 12
 an error workflow with throttled Telegram alerts, and a staged daily sync, so a failed data load
 never breaks the live bot.
 `n8n` `LangChain` `Gemini` `pgvector` `Telegram`
+
+**Auto-parts shop CRM with fiscal receipts**: parts, stock per location, sales, client debts,
+suppliers and a car-service module for a live shop, in Armenian, Russian and English. A small bridge
+program on the shop PC sends each sale to the physical fiscal register over the tax authority's
+protocol; a request with no clear answer is marked UNKNOWN and never re-sent automatically. Live
+since Sep 2026, 572 tests.
+`Python` `Flask` `PostgreSQL` `Docker Compose` `Alpine.js`
 
 **Oil station management platform (Har Oil)**: inventory, clients, sales, role-based access control and
 audit logging behind an Armenian-language interface. Five services under Docker Compose
